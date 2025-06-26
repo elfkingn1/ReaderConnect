@@ -1,14 +1,13 @@
 services:
   - type: web
-    name: readerconnect-frontend
-    env: node
-    buildCommand: cd frontend && npm install && npm run build
-    startCommand: cd frontend && npm run preview
-    staticPublishPath: frontend/dist
-
-  - type: web
     name: readerconnect-backend
     env: node
     buildCommand: cd backend && npm install
-    startCommand: cd backend && node server.js
-    plan: free
+    startCommand: cd backend && npm start
+    autoDeploy: true
+
+  - type: static
+    name: readerconnect-frontend
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    autoDeploy: true
